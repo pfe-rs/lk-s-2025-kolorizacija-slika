@@ -3,7 +3,7 @@ import torch.nn as nn
 import numpy as np
 from IPython import embed
 
-from .BaseColor import *
+from BaseColor import *
 
 class Generator(BaseColor):
     def __init__(self, norm_layer=nn.BatchNorm2d):
@@ -14,7 +14,7 @@ class Generator(BaseColor):
             nn.LeakyReLU(True),
             nn.Conv2d(64, 64, kernel_size=3, stride=2, padding=1, bias=True),
             nn.LeakyReLU(True),
-            nn.norm_layer(64)
+            norm_layer(64)
         ]
 
         model2 = [
@@ -22,7 +22,7 @@ class Generator(BaseColor):
             nn.LeakyReLU(True),
             nn.Conv2d(128, 128, kernel_size=3, stride=2, padding=1, bias=True),
             nn.LeakyReLU(True),
-            nn.norm_layer(128)
+            norm_layer(128)
         ]
 
         model3 = [
@@ -32,7 +32,7 @@ class Generator(BaseColor):
             nn.LeakyReLU(True),
             nn.Conv2d(256, 256, kernel_size=3, stride=2, padding=1, bias=True),
             nn.LeakyReLU(True),
-            nn.norm_layer(256)
+            norm_layer(256)
         ]
 
         model4 = [
@@ -42,7 +42,7 @@ class Generator(BaseColor):
             nn.LeakyReLU(True),
             nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1, bias=True),
             nn.LeakyReLU(True),
-            nn.norm_layer(512)
+            norm_layer(512)
         ]
 
         model5 = [
@@ -52,7 +52,7 @@ class Generator(BaseColor):
             nn.LeakyReLU(True),
             nn.Conv2d(512, 512, kernel_size=3, dilation=2, stride=1, padding=2, bias=True),
             nn.LeakyReLU(True),
-            nn.norm_layer(512)
+            norm_layer(512)
         ]
 
         model6 = [
@@ -62,7 +62,7 @@ class Generator(BaseColor):
             nn.LeakyReLU(True),
             nn.Conv2d(512, 512, kernel_size=3, dilation=2, stride=1, padding=2, bias=True),
             nn.LeakyReLU(True),
-            nn.norm_layer(512)
+            norm_layer(512)
         ]
 
         model7 = [
@@ -72,7 +72,7 @@ class Generator(BaseColor):
             nn.LeakyReLU(True),
             nn.Conv2d(512, 512, kernel_size=3, dilation=2, stride=1, padding=2, bias=True),
             nn.LeakyReLU(True),
-            nn.norm_layer(512)
+            norm_layer(512)
         ]
 
         model8 = [
@@ -82,7 +82,7 @@ class Generator(BaseColor):
             nn.LeakyReLU(True),
             nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1, bias=True),
             nn.LeakyReLU(True),
-            nn.norm_layer(512)
+            norm_layer(512)
         ]
 
         model9 = [
