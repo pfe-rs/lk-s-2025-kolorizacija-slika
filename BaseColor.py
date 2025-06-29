@@ -1,9 +1,5 @@
 import torch
 from torch import nn
-import numpy as np
-from PIL import Image
-from skimage import color
-import torch.nn.functional as F
 
 class BaseColor(nn.Module):
 	def __init__(self):
