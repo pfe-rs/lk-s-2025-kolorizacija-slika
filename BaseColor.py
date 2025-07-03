@@ -1,10 +1,9 @@
 import torch
+from skimage import color
 from torch import nn
 import numpy as np
-from PIL import Image
-from skimage import color
-import torch.nn.functional as F
 
+from PIL import Image
 class BaseColor(nn.Module):
 	def __init__(self):
 		super(BaseColor, self).__init__()
@@ -38,13 +37,30 @@ def preprocess_img(img_rgb_orig, HW=(256,256), resample=4):
 	img_rgb_rs = resize_img(img_rgb_orig, HW=HW, resample=resample)
 	
 	img_lab_orig = color.rgb2lab(img_rgb_orig)
-	img_lab_rs = color.rgb2lab(img_rgb_rs)
+	img_lab_rs = color.rgb2lab(img_rgb_rs).astype(np.float32)
 
 	img_l_orig = img_lab_orig[:,:,0]
 	img_l_rs = img_lab_rs[:,:,0]
 
 	tens_orig_l = torch.Tensor(img_l_orig)[None,None,:,:]
 	tens_rs_l = torch.Tensor(img_l_rs)[None,None,:,:]
+	
+# def preprocess_img(img_rgb_orig, HW=(256,256), resample=4):
+# 	basecolor = BaseColor()
+# 	img_rgb_rs = resize_img(img_rgb_orig, HW=HW, resample=resample)
+
+# 	img_lab_rs = color.rgb2lab(img_rgb_rs).astype(np.float32)
+
+# 	img_l_rs = img_lab_rs[:,:,0]
+# 	img_ab_rs = img_lab_rs[:,:,1:3]
+
+# 	tens_l = torch.Tensor(img_l_rs)[None,None,:,:]
+# 	tens_ab = torch.tensor(img_ab_rs).permute(2,0,1).float()
+	
+# 	tens_l = basecolor.normalize_l(tens_l.squeeze(0))
+# 	tens_ab = basecolor.normalize_ab(tens_ab)
+
+# 	return (tens_l, tens_ab)
 
 	return (tens_orig_l, tens_rs_l)
 
